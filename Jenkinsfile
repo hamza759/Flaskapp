@@ -33,10 +33,8 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                sh 'echo $PATH'
-                sh 'which docker-compose'
-                sh "/usr/bin/docker-compose up -d --build flask-app"
-    
+s
+                sh "docker compose up -d --build flask-app"
            }
         }
     }
