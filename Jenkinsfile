@@ -33,11 +33,11 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                   sh '''
-                  export PATH=$PATH:/usr/bin
-                  docker-compose up -d --build flask-app
-                '''
-            }
+                sh 'echo $PATH'
+                sh 'which docker-compose'
+                sh "/usr/bin/docker-compose up -d --build flask-app"
+    
+           }
         }
     }
 }
