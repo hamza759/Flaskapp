@@ -1,6 +1,6 @@
 pipeline {
     
-    agent{label "dev"};
+    agent{ label "dev" };
     
     stages{
         stage("Code"){
@@ -36,6 +36,23 @@ pipeline {
 
                 sh "docker compose up -d --build flask-app"
            }
+        }
+    }
+post 
+    {
+        success{
+            emailtext(
+            subject: "build successfull",
+            body: "your CICD build was successfull",
+            to: 'ha1257656@gmail.com'
+            )
+        }
+        failure{
+            emailtext(
+            subject: "build Failed",
+            body: "your CICD build got an error!",
+            to: 'ha1257656@gmail.com'
+            )
         }
     }
 }
