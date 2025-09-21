@@ -41,14 +41,14 @@ pipeline {
 post 
     {
         success{
-            emailtext(
+            emailext(
             subject: "build successfull",
             body: "your CICD build was successfull",
             to: 'ha1257656@gmail.com'
             )
         }
         failure{
-            emailtext(
+            emailext(
             subject: "build Failed",
             body: "your CICD build got an error!",
             to: 'ha1257656@gmail.com'
