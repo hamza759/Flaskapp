@@ -43,8 +43,8 @@ post
         success{
             script{
                 emailext(
-                from: 'ha1257656@gmail.com'
-                to: 'hamzz7002@gmail.com'
+                from: 'ha1257656@gmail.com',
+                to: 'hamzz7002@gmail.com',
                 body: "your CICD build was successfull",
                 subject: "CICD build successfully"
                     )
@@ -53,8 +53,8 @@ post
         failure{
             script{
                 emailext(
-                from: 'ha1257656@gmail.com'
-                to: 'hamzz7002@gmail.com'
+                from: 'ha1257656@gmail.com',
+                to: 'hamzz7002@gmail.com',
                 body: "your CICD build got an error",
                 subject: "CICD build failed"
                     )
