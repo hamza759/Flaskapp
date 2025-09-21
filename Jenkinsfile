@@ -10,7 +10,7 @@ pipeline {
         }
         stage("Build"){
             steps{
-                sh "docker build -t two-tier-flask-app ."
+                sh "docker buil -t two-tier-flask-app ."
             }
         }
         stage("Test"){
@@ -44,14 +44,14 @@ post
             emailext(
             subject: "build successfull",
             body: "your CICD build was successfull",
-            to: 'ha1257656@gmail.com'
+            to: 'hamzz7002@gmail.com'
             )
         }
         failure{
             emailext(
             subject: "build Failed",
             body: "your CICD build got an error!",
-            to: 'ha1257656@gmail.com'
+            to: 'hamzz7002@gmail.com'
             )
         }
     }
