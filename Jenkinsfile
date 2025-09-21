@@ -41,18 +41,24 @@ pipeline {
 post 
     {
         success{
-            emailext(
-            subject: "build successfull",
-            body: "your CICD build was successfull",
-            to: 'hamzz7002@gmail.com'
-            )
+            script{
+                emailext(
+                from: 'ha1257656@gmail.com'
+                to: 'hamzz7002@gmail.com'
+                body: "your CICD build was successfull",
+                subject: "CICD build successfully"
+                    )
+            }
         }
         failure{
-            emailext(
-            subject: "build Failed",
-            body: "your CICD build got an error!",
-            to: 'hamzz7002@gmail.com'
-            )
+            script{
+                emailext(
+                from: 'ha1257656@gmail.com'
+                to: 'hamzz7002@gmail.com'
+                body: "your CICD build got an error",
+                subject: "CICD build failed"
+                    )
+            }
         }
     }
 }
