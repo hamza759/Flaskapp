@@ -1,3 +1,4 @@
+@Library("Shared") _
 pipeline {
     
     agent{ label "dev" };
@@ -5,13 +6,17 @@ pipeline {
     stages{
         stage("Code"){
             steps{
-                git url:"https://github.com/hamza759/Flaskapp.git", branch:"main"
+                script{
+                     clone("https://github.com/hamza759/Flaskapp.git","main")
+                }
             }
         }
         
         stage("Trivy File System Scane"){
             steps{
-                sh "trivy fs . -o result.json"
+                script{
+                 trivy_fs()    
+                }
             }
         }
             
@@ -27,15 +32,9 @@ pipeline {
         }
         stage("push to docker hub"){
             steps{
-                withCredentials([usernamePassword(
-                    credentialsId:"demohub",
-                    passwordVariable:"dockerHubPass",
-                    usernameVariable:"dockerHubUser"
-                    )]){
-                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker image tag two-tier-flask-app ${env.dockerHubUser}/two-tier-flask-app"
-                sh "docker push ${env.dockerHubUser}/two-tier-flask-app:latest"
-            }
+             script{
+                 docker_push("demohub","two-tier-flask-app")
+             }
             }
         }
         stage("Deploy"){
