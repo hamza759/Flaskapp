@@ -8,6 +8,12 @@ pipeline {
                 git url:"https://github.com/hamza759/Flaskapp.git", branch:"main"
             }
         }
+        
+        stage("Trivy File System Scane"){
+            steps{
+                sh "trivy fs . -o result.json"
+        }
+            
         stage("Build"){
             steps{
                 sh "docker build -t two-tier-flask-app ."
